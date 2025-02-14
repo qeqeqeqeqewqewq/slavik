@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <3 </title>
+
+    <style>
+         body {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .red-text {
+            color: red;
+            font-size: 40px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .button-container {
+            margin-bottom: 20px;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 15px
+        }
+
+        .button {
+            color: white;
+            padding: 0.5em 1em;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            border-radius: 3px;
+            font-weight: bold;
+            transition: transform 0.1s ease-in-out;
+        }
+
+        .green-button {
+            background-color: rgb(3, 190, 3);
+        }
+
+        .red-button {
+            background-color: red;
+        }
+
+        .gif {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .second {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="red-text" id="text">Марианна, ты будешь моей venom?</p>
+
+        <div class="button-container">
+            <button class="button green-button" id="greenButton">Да</button>
+            <button class="button red-button" id="redButton">Нет</button>
+        </div>
+
+        <img src="cats.gif" class="gif first" id="first">
+        <img src="bear.gif" class="gif second" id="second">
+    </div>
+
+    <script>
+        const greenButton = document.getElementById('greenButton');
+        const redButton = document.getElementById('redButton');
+
+        const PHRASES = [
+            'Ты уверена?',
+            'Точно уверена?',
+            '100%?',
+            'Подумай, пожалуйста',
+            'Просто подумай',
+            'Если ты скажешь нет, я расстроюсь', 
+            'Я сильно расстроюсь',
+            'Я очень сильно расстроюсь',
+        ]
+        let fontSize = 24;
+        let textIndex = 0;
+        redButton.addEventListener('click', () => {
+            fontSize += 20;
+            if (textIndex < PHRASES.length - 1) {
+                textIndex++;
+                redButton.textContent = PHRASES[textIndex];
+            } else {
+                redButton.textContent = PHRASES[textIndex];
+            }
+            greenButton.style.fontSize = `${fontSize}px`; 
+        });
+
+        greenButton.addEventListener('click', () => {
+            const text = document.getElementById('text');
+            const firstGif = document.getElementById('first');
+            const secondGif = document.getElementById('second');
+            greenButton.style.display = `none`;
+            redButton.style.display = `none`;
+            text.textContent = 'Я знал, что ты согласишься!';
+            firstGif.style.display = `none`;
+            secondGif.style.display = 'block'
+        });
+    </script>
+</body>
+</html>
